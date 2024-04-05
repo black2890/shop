@@ -1,0 +1,6 @@
+repository(저장소) : DB와의 상호작용을 위한 메서드를 정의하는 인터페이스 / SPA에서 인터페이스만 정의하면 Spring이 자동으로 인터페이스를 구현한 빈을 생성하여 사용함
+
+MemberRepository : Member 엔티티에 대한 데이터 액세스 작업을 정의함
+
+JpaRepository : 기본적인 CRUD 기능을 제공
+

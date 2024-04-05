@@ -1,0 +1,11 @@
+entity(개체) : DB의 테이블과 매핑하는 객체 / DB와의 상호작용을 담당 / JPA와 함께 사용되어 영속성을 가짐
+
+<Cart> Entity
+Cart라는 클래스에 @Table(name="cart")어노테이션에 의해 이름이 'cart'인 테이블과 매핑됨
+Cart클래스 내 메소드에 @Column(name="x")어노테이션에 의해 이름이 'x'인 컬럼과 매핑됨
+
+<CartItem> Entity
+
+<Item> Entity
+
+<Member> Entity

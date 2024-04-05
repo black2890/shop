@@ -1,0 +1,46 @@
+dto : 계층간 데이터 전송을 위한 객체 / Business-Presentation 계층 사이에서 데이터 전송/ 주로 특정 작업에서 필요한 일부 데이터만 포함하는 객체
+
+빈 검증 어노테이션
+@NotEmpty : NULL 체크 및 문자열의 경우 길이 0인지 검사
+@NotBlank : NULL 체크 및 문자열의 경우 길이 0 및 빈 문자열(" ") 검사
+@Length(min=, max=) : 최소 최대 길이 검사
+@Email : 이메일 형식인지 검사
+@Max(숫자) : 지정한 값보다 작은지 검사
+@Min(숫자) : 지정한 값보다 큰지 검사
+@Null : 값이 NULL인지 검사
+@Not Null : 값이 NULL이 아닌지 검사
+
+------------------------------------------
+<ItemDto> +@ getter, setter     / 상품 정보 DTO
+
+Long id : 아이디
+String itemNm : 상품명
+Integer price : 상품 가격
+String itemDetail : 상품 상세 정보
+String sellStatCd : 판매 상태 코드
+LocalDate regTime : 등록 시각
+LocalDate updateTime : 업데이트 시각
+
+------------------------------------------
+<MemberFormDto> +@ getter, setter   / 멤버 전송 DTO
+
+String name : 이름
+String email : 이메일
+String password : 비밀번호
+String address : 주소
+
+------------------------------------------
+<ItemImgDto> / 상품 저장 후 상품 이미지에 대한 데이터를 전달할 DTO
+
+String imgName  : 이미지 파일명
+String oriImgName   : 원본 이미지 파일명
+String imgUrl   : 이미지 조회 경로
+String repimgYn : 대표 이미지 여부
+
+------------------------------------------
+<ItemFormDto> / 상품 데이터 정보를 전달하는 DTO
+
+String imgName  : 이미지 파일명
+String oriImgName   : 원본 이미지 파일명
+String imgUrl   : 이미지 조회 경로
+String repimgYn : 대표 이미지 여부

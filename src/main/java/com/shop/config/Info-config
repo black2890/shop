@@ -1,0 +1,25 @@
+Config(환경 설정) : Application 설정을 관리하는 곳
+
+Annotaion을 통해 설정 클래스를 정의
+DB 연결, 보안 설정, 빈(Bean) 구성 등의 작업을 수행
+
+<JPAConfig>
+변수
+- final EntityManager em;
+
+빈
+- JPAQueryFactory jpaQueryFactory(EntityManager em);
+    └ Querydsl을 사용하여 JPA쿼리를 생성하는데 사용되는 팩토리 클래스
+    └ Querydsl : 타입 안전한 쿼리를 작성할 수 있는 도구, Java 코드로 쿼리 작성할 수 있도록 지원함
+
+<SeurityConfig>
+
+
+빈
+1- PasswordEncoder passwordEncoder(); -> return new BCryptPasswordEncoder();
+    └ PasswordEncoder 인터페이스 : Spring Security에서 비밀번호를 안전하게 저장하고 검증하기 위한 인터페이스
+                                비밀번호를 암호화하고, 저장된 암호화된 비밀번호를 검증하는 메서드를 제공함.
+    └ BCryptPasswordEncoder : 해시 함수의 한 유혀으로, 단방향 해시 함수이며, 비밀번호를 안전하게 암호화하기 위해 주로 사용됨.
+
+
+2- SecurityFilterChain filterChain(HttpSecurity http)

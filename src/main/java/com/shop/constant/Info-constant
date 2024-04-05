@@ -1,0 +1,10 @@
+Constant : Application에서 사용되는 상수들을 정의하는 곳
+
+ItemSellStatus(Item 판매 현황)
+ -> SELL : 파는중
+ -> SOLD_OUT : 매진
+
+Role(역할)
+ -> USER : 사용자
+ -> ADMIN : 관리자
+
