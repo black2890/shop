@@ -1,9 +1,11 @@
 package com.shop.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -49,9 +51,9 @@ public class SecurityConfig {
                     .requestMatchers(antMatcher("/")).permitAll()
                     .requestMatchers(antMatcher("/members/**")).permitAll()
                     .requestMatchers(antMatcher("/item/**")).permitAll()
-                    .requestMatchers(antMatcher("/css/**")).permitAll()
                     .requestMatchers(antMatcher("/images/**")).permitAll()
-                    .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                .requestMatchers(antMatcher("/favicon.ico/")).permitAll()
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated();
         });
 
@@ -60,7 +62,13 @@ public class SecurityConfig {
         http.exceptionHandling((it) -> it
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint("/members/login"))
         );
-
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer(){
+        return web -> web.ignoring()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()
+                );
     }
 }

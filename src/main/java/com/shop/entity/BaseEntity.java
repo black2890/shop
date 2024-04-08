@@ -13,10 +13,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 public abstract class BaseEntity extends BaseTimeEntity{
 
+    // 작성 일자
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
 
+    // 수정 일자
     @LastModifiedBy
     private String modifiedBy;
 }

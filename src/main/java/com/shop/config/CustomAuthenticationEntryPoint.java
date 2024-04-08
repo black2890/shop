@@ -17,17 +17,17 @@ public class CustomAuthenticationEntryPoint extends LoginUrlAuthenticationEntryP
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
         String ajaxHeader = request.getHeader("X-Requested-With");
-        boolean isAjax = ajaxHeader.equals("XMLHttpRequest");
+        boolean isAjax = (ajaxHeader==null) ? false : ajaxHeader.equals("XMLHttpRequest");
         if(isAjax){
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Ajax Request Denied");
         } else {
             super.commence(request, response, authException);
         }
 
-//        if("XMLHtpRequest".equals(request.getHeader("x-requested-with"))) {
-//            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-//        } else {
-//            response.sendRedirect("/members/login");
-//        }
+        if("XMLHtpRequest".equals(request.getHeader("x-requested-with"))) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        } else {
+            response.sendRedirect("/members/login");
+        }
     }
 }
