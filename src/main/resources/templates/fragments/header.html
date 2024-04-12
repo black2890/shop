@@ -17,12 +17,15 @@
 
                 <!--       목록 리스트 구현         -->
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="nav-link" href="/admin/item/new">상품 등록</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">상품 목록</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="nav-link" href="/admin/items">상품 관리</a>
-                    </li>
+<!--                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">-->
+<!--                        <a class="nav-link" href="/admin/item/new">상품 등록</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">-->
+<!--                        <a class="nav-link" href="/admin/items">상품 관리</a>-->
+<!--                    </li>-->
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" href="/cart">장바구니</a>
                     </li>
@@ -36,6 +39,19 @@
                         <a class="nav-link" href="/members/logout">로그아웃</a>
                     </li>
                 </ul>
+
+                <!--     Dropdown 구현      -->
+                <div class="btn-group" sec:authorize="isAuthenticated()">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/admin/item/new">상품 등록</a></li>
+                        <li><a class="dropdown-item" href="/admin/items">상품 관리</a></li>
+                        <li><hr class="dropdown-divider"></li>
+<!--                        <li sec:authorize="isAnonymous()"><a class="dropdown-item" href="/members/login">로그인</a></li>-->
+                        <li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/members/logout">로그아웃</a></li>
+                    </ul>
+                </div>
 
                 <!--       검색란 및 버튼 구현         -->
                 <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/members")
-@Controller
+@RequestMapping("/members") // /members로 http 요청이 들어오는 경우 해당 클래스(메소드)를 실행함.
+@Controller                    // 클래스를 Controller임을 인지하고 Bean으로 등록
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -45,19 +45,19 @@ public class MemberController {
             return "member/memberForm";
         }
 
-        return "redirect:/";
+        return "redirect:/member/login";
     }
 
     //  로그인 컨트롤러
 
     @GetMapping(value = "/login")
     public String loginMember(){
-        return "/member/memberLoginForm";
+        return "member/memberLoginForm";
     }
 
     @GetMapping(value = "/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
-        return "/member/memberLoginForm";
+        return "member/memberLoginForm";
     }
 }

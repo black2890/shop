@@ -19,8 +19,8 @@ public class MemberService implements UserDetailsService {
 
     // 새로운 멤버 저장 비즈니스 로직
     public Member saveMember(Member member){
-        validateDuplicateMember(member);
-        return memberRepository.save(member);
+        validateDuplicateMember(member);    //중복 검사를 거친 다음
+        return memberRepository.save(member);   //회원 등록 절차 진행
     }
 
     // 중복 회원인지 검사 비즈니스 로직
