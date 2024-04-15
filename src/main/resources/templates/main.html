@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layouts/layout1}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
 
 <!-- 사용자 CSS 추가-->
 
@@ -68,31 +68,11 @@
         </th:block>
     </div>
 
-    <div th:with="start=${(items.number/maxPage)*maxPage + 1},
-        end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1)
-        <items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
-            <ul class="pagination justify-content-center">
-
-                <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
-                    <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number - 1}}"
-                    aria-label='Previous' class="page-link">
-                        <span aria-hidden='true'>Previous</span>
-                    </a>
-                </li>
-
-                <li class="page-item" th:each="page: ${#numbers.sequence(start,end)}"
-                    th:classappend="${items.number eq page - 1}?'active':''">
-                    <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page - 1}}"
-                       th:inline="text" class="page-link">[[${page}]]</a>
-                </li>
-
-                <li class="page-item" th:classappend="${items.number + 1 ge items.totalPages}?'disabled':''">
-                    <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number + 1}}"
-                       saria-label='next' class="page-link">
-                       <span aria-hidden='true'>Next</span>
-                    </a>
-                </li>
-            </ul>
+    <!--     더보기 -> 상품 목록으로 가는 버튼 추가       -->
+    <div class="row justify-content-end">
+        <div class="col-md-auto">
+            <a href="/item/itemList">더보기 &rarr;</a>
+        </div>
     </div>
 </div>
 </html>

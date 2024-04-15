@@ -14,7 +14,8 @@
             }
 
             bindDomEvent();
-
+            updateStock();
+            //updateStock(document.getElementById('selectedSellStatus'));
         });
 
         function bindDomEvent(){
@@ -30,6 +31,19 @@
 
                 $(this).siblings(".custom-file-label").html(fileName);
             });
+        }
+
+        function updateStock(select) {
+            var stockNumberInput = document.getElementById('stockNumber');
+
+            if (select.value === 'SOLD_OUT') {
+                stockNumberInput.value = '0';
+                stockNumberInput.disabled = true;
+            } else {
+                stockNumberInput.value = '';
+                stockNumberInput.placeholder="상품의 재고를 입력해주세요"
+                stockNumberInput.disabled = false;
+            }
         }
 
     </script>
@@ -64,7 +78,7 @@
         <input type="hidden" th:field="*{id}">
 
         <div class="form-group">
-            <select th:field="*{itemSellStatus}" class="custom-select">
+            <select th:field="*{itemSellStatus}" class="custom-select" onchange="updateStock(this)">
                 <option value="SELL">판매중</option>
                 <option value="SOLD_OUT">품절</option>
             </select>
@@ -86,11 +100,11 @@
         </div>
         <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
 
-        <div class="input-group">
+        <div class="input-group" >
             <div class="input-group-prepend">
                 <span class="input-group-text">재고</span>
             </div>
-            <input type="number" th:field="*{stockNumber}" class="form-control" placeholder="상품의 재고를 입력해주세요">
+            <input id="stockNumber" type="number" th:field="*{stockNumber}" class="form-control" placeholder="상품의 재고를 입력해주세요">
         </div>
         <p th:if="${#fields.hasErrors('stockNumber')}" th:errors="*{stockNumber}" class="fieldError">Incorrect data</p>
 

@@ -35,6 +35,7 @@ public class ItemController {
         return "item/itemForm";
     }
 
+    // 상품등록
     @PostMapping(value ="/admin/item/new")
     public String itemNew(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
                           Model model, @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList){
@@ -105,7 +106,7 @@ public class ItemController {
 
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
         // Pageable pageable = PageRequest.of(page.orElse(0), 3);
         // Pageable pageable = PageRequest.of(page.orElse(() -> 0), 3);
 
