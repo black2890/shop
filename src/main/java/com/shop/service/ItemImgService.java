@@ -31,8 +31,7 @@ public class ItemImgService {
 
         if(!StringUtils.isEmpty(oriImgName)){
             imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
-            // imgUrl = "/images/item/" + imgName;
-            imgUrl = itemImgLocation + "/" + imgName;
+            imgUrl = "/images/item/" + imgName;
         }
 
         itemImg.updateItemImg(oriImgName, imgName, imgUrl);
@@ -64,8 +63,7 @@ public class ItemImgService {
 
             String oriImgName = itemImgFile.getOriginalFilename();
             String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
-            // String imgUrl = "/images/item/" + imgName;
-            String imgUrl = itemImgLocation + "/" + imgName;
+            String imgUrl = "/images/item/" + imgName;
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
         }
     }
